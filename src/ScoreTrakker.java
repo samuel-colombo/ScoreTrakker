@@ -17,14 +17,24 @@ public class ScoreTrakker {
         Scanner scan = new Scanner(fileName);
         // create temp student to be add to the array list
         Student curStudent = new Student();
+        // char to keep track of what being read in, N for name, S for score
+        char curRead = 'N';
         // loop through the scanned file to set name and score then add to the array list
         while(scan.hasNextLine()) {
             // set name
-            curStudent.setName(scan.nextLine());
-            // set score
-            curStudent.setScore(Integer.parseInt(scan.nextLine()));
-            // add student to array list
-            this.students.add(curStudent);
+        	if(curRead == 'N') {
+        		curStudent.setName(scan.nextLine());
+        		// change for the next read
+        		curRead = 'S';
+        	} else {
+        		// set score
+                curStudent.setScore(scan.nextInt());
+                // add student to array list
+                this.students.add(curStudent);
+                // change for the next read to be name again
+                curRead = 'N';
+                
+        	}
         }
 	}
 	public void printInOrder () {
