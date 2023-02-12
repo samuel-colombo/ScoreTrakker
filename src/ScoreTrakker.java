@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class ScoreTrakker {
@@ -21,11 +24,15 @@ public class ScoreTrakker {
             // set score
             curStudent.setScore(Integer.parseInt(scan.nextLine()));
             // add student to array list
-            students.add(curStudent);
+            this.students.add(curStudent);
         }
 	}
 	public void printInOrder () {
-		
+		Collections.sort(this.students);
+		Iterator iter = this.students.iterator();
+		while (iter.hasNext()) {
+			System.out.println(iter.next());
+		}
 	}
 	public void processFiles() throws FileNotFoundException {
 		loadDataFile("scores.txt");
