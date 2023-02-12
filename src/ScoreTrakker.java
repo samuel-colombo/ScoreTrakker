@@ -1,15 +1,19 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class ScoreTrakker {
 	
 	private ArrayList<Student> students;
 	
+	public ScoreTrakker() {
+		super();
+		this.students = new ArrayList<Student>();
+	}
 	public void loadDataFile (String fileName) throws FileNotFoundException {
 		// read the file
         FileReader read = new FileReader(fileName);
@@ -33,13 +37,19 @@ public class ScoreTrakker {
                 this.students.add(curStudent);
                 // change for the next read to be name again
                 curRead = 'N';
-                
         	}
         }
+        // close read and scan
+        scan.close();
+        try {
+			read.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	public void printInOrder () {
 		Collections.sort(this.students);
-		Iterator iter = this.students.iterator();
+		Iterator<Student> iter = this.students.iterator();
 		while (iter.hasNext()) {
 			System.out.println(iter.next());
 		}
