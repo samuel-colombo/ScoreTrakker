@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class ScoreTrakker {
-	
 	private ArrayList<Student> students;
+	private String[] files = {"scores.txt", "badscore.txt", "nofile.txt"};
 	
 	/**
 	 * Default Constructor
@@ -28,6 +28,7 @@ public class ScoreTrakker {
 			return false;
 		}
 		try {
+			// parse if the string is a number, if not throw exception of NumberFormat
 			int parseInt = Integer.parseInt(inString);
 		} catch (NumberFormatException e){
 			return false;
@@ -46,7 +47,6 @@ public class ScoreTrakker {
 		try {
 			read = new FileReader(fileName);
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			System.out.println("Can't open file: " + fileName);
 		}
         // scan the file
