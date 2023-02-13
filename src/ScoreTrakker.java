@@ -10,33 +10,74 @@ public class ScoreTrakker {
 	
 	private ArrayList<Student> students;
 	
+	/**
+	 * Default Constructor
+	 */
 	public ScoreTrakker() {
 		super();
 		this.students = new ArrayList<Student>();
 	}
-	public void loadDataFile (String fileName) throws FileNotFoundException {
+	
+	/**
+	 * isNumber: helper method to check if passed in string is a number.
+	 * @param inString: the input string need to be check.
+	 * @return false, if not an integer, and true, if it is not.
+	 */
+	public static boolean isNumber(String inString) {
+		if(inString == null) {
+			return false;
+		}
+		try {
+			int parseInt = Integer.parseInt(inString);
+		} catch (NumberFormatException e){
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * loadDataFile: open the file and read its content and add to array list of student object.
+	 * @param fileName: name of target file, if exist.
+	 * @throws Exception: if the read value that was supposed to score is not a number, throws an exception.
+	 */
+	public void loadDataFile (String fileName) throws Exception{
 		// read the file
-        FileReader read = new FileReader(fileName);
+        FileReader read = null;
+		try {
+			read = new FileReader(fileName);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't open file: " + fileName);
+		}
         // scan the file
         Scanner scan = new Scanner(fileName);
         // create temp student to be add to the array list
         Student curStudent = new Student();
+        // create a temp string to catch what is read
+        String curLine = "";
         // char to keep track of what being read in, N for name, S for score
         char curRead = 'N';
         // loop through the scanned file to set name and score then add to the array list
         while(scan.hasNextLine()) {
-            // set name
-        	if(curRead == 'N') {
-        		curStudent.setName(scan.nextLine());
-        		// change for the next read
-        		curRead = 'S';
-        	} else {
+        	curLine = scan.nextLine();
+        	// check if read value is a number for when reading a score
+        	if (isNumber(curLine) && curRead == 'S') {
         		// set score
-                curStudent.setScore(scan.nextInt());
+                curStudent.setScore(Integer.parseInt(curLine));
                 // add student to array list
                 this.students.add(curStudent);
                 // change for the next read to be name again
                 curRead = 'N';
+        	} else {
+        		if(curRead == 'N') {
+        			// set name
+        			curStudent.setName(curLine);
+            		// change for the next read
+            		curRead = 'S';
+        		} else {
+        			// if the current reading is not score and not a number
+        			throw new Exception("Incorrect format, not a valid score: " + curLine);
+        		}
         	}
         }
         // close read and scan
@@ -54,11 +95,11 @@ public class ScoreTrakker {
 			System.out.println(iter.next());
 		}
 	}
-	public void processFiles() throws FileNotFoundException {
+	public void processFiles() throws Exception {
 		loadDataFile("scores.txt");
 		printInOrder();
 	}
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws Exception {
 		ScoreTrakker trakker = new ScoreTrakker();
 		trakker.processFiles();
 	}
