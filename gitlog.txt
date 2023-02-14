@@ -1,0 +1,52 @@
+commit 6aa587caa7a79a7d17bfe48f50ef4d5f2ab092b5
+Author: Duan Nguyen <dcnguyen@mines.edu>
+Date:   Sun Feb 12 22:24:36 2023 -0700
+
+    commit badscore.txt, file array
+    
+    create text file for input with expectation of error, add array for file names that will be tested on.
+
+commit 47547e26456cd66fd0920a1ec12fc5677d2ac404
+Author: Duan Nguyen <dcnguyen@mines.edu>
+Date:   Sun Feb 12 21:51:37 2023 -0700
+
+    commit loadDateFile, isNumber
+    
+    update loadDataFile for catching exception. Also create a helper function for checking if a string is a number or not.
+
+commit 394659ba22de0165058b8dda0d43b75fcd814906
+Author: Duan Nguyen <dcnguyen@mines.edu>
+Date:   Sun Feb 12 15:13:51 2023 -0700
+
+    commit constructor
+    
+    create a default constructor
+    tried to close reader and scanner (still does not work)
+
+commit c02f05b201aeaae389da4fdf0ba0dc735c717e5f
+Author: Duan Nguyen <dcnguyen@mines.edu>
+Date:   Sun Feb 12 13:45:19 2023 -0700
+
+    commit scoreTrakker
+    
+    change how line and int is read
+
+commit 1d456bd62303cc7dbd73ccad1bd932a710cb8653
+Author: Samuel Colombo <sam@softwarfare.com>
+Date:   Sun Feb 12 13:33:40 2023 -0700
+
+    checkpoint commit -> dev
+
+commit 3475794716f7133354f8373b9a2050e02b8afb25
+Author: Duan Nguyen <dcnguyen@mines.edu>
+Date:   Sun Feb 12 13:14:10 2023 -0700
+
+    loadDataFile(), Student
+    
+    Define loadDataFile, add getters and setters for Student class
+
+commit dd0edbbef137cb22c8a740a37f72d7a3c93e0c5b
+Author: Samuel Colombo <sam@softwarfare.com>
+Date:   Sun Feb 12 12:37:36 2023 -0700
+
+    Initial Commit
